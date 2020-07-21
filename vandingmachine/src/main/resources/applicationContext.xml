@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="io" class="com.mycompany.vandingmachine.ui.UserIOConsoleImpl" />
+
+    <bean id="dao" class="com.mycompany.vandingmachine.dao.VendingMachineDaoFileImpl" />
+    <bean id="display" class="com.mycompany.vandingmachine.ui.VendingMachineDisplay">
+        <constructor-arg ref="io" />
+    </bean>
+
+    <bean id="service" class="com.mycompany.vandingmachine.service.VendingMachineService">
+        <constructor-arg ref="dao" />
+    </bean>
+
+    <bean id="controller" class="com.mycompany.vandingmachine.controller.VendingMachineController">
+        <constructor-arg ref="service" />
+        <constructor-arg ref="display" />
+    </bean>
+</beans>
+
+
